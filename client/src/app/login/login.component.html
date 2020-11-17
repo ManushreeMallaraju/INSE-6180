@@ -1,0 +1,34 @@
+<div>
+    <h4 class="text-center my-4">Login as</h4>
+    <div class="d-flex justify-content-center">
+        <button *ngIf="!hideButton" class="btn btn-primary mr-3" data-toggle="modal" data-target="#loginModal"
+            (click)="changeRole('Admin')">Admin</button>
+        <button *ngIf="!hideButton" class="btn btn-primary" data-toggle="modal" data-target="#loginModal"
+            (click)="changeRole('Reviewer')">Reviewer</button>
+            <button class="btn btn-info" (click)="goToReview()" *ngIf="hideButton">View review</button>
+    </div>
+
+    <div class="modal" id="loginModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ role }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="loginForm" (ngSubmit)="validateUser()">
+                        <div class="form-group">
+                            <input class="form-control" type="text" [(ngModel)]="user.username" placeholder="User Name.." formControlName="username">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" [(ngModel)]="user.password" placeholder="Password..." formControlName="password">
+                        </div>
+                        <button class="btn btn-primary" #closeButton type="submit" data-dismiss="modal" (click)="close()">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

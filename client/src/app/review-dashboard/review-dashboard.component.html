@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row d-flex mt-3 w-50">
+        <input class="form-control" (keyup)="applyFilter($event.target.value)" placeholder="Query">
+    </div>
+    <div class="row d-flex pt-3">
+        <button class="ml-2 btn btn-info " routerLink="/login">Back</button>
+        <button class="ml-2 btn btn-info ml-auto " (click)="logOut()">Logout</button>
+    </div>
+    <div class="row d-flex">
+        <div class="col-12 mt-4" *ngIf="dataTrue && filteredReviews[0] != null && filteredReviews[0] != undefined && filteredReviews.length>0">
+            <table class="table" id="reviewTable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Label</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Review</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let review of filteredReviews; let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td class="badge mt-1"
+                            [ngClass]="{'badge-success': review.label === '__label__2','badge-danger': review.label === '__label__1'}">
+                            {{ review.label }}</td>
+                        <td>{{ review.username }}</td>
+                        <td>{{ review.email }}</td>
+                        <td>{{ review.review }}</td>
+                        <td>{{ review.status }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
